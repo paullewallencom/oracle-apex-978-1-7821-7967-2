@@ -1,0 +1,12 @@
+    select emp.empno
+    ,      emp.ename
+    ,      emp.job
+    ,      emp.hiredate
+    ,      emp.sal
+    ,      dept.dname
+    from   emp
+    ,      dept
+    where  dept.deptno = emp.deptno
+    and    emp.empno = (select max(empno)
+                        from emp
+                        where empno < nvl(:PXX_EMPNO,0));

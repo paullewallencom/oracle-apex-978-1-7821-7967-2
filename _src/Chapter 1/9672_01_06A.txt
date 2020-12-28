@@ -1,0 +1,1 @@
+<a href="#LINK#"><img src="#IMAGE#" alt="#ALT#" height="#HEIGHT#" width="#WIDTH#" />#TEXT#</a>

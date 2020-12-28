@@ -1,0 +1,4 @@
+select username display_value
+     , id return_value
+  from app_employees
+ where dept_id <> 3

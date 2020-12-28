@@ -1,0 +1,5 @@
+select emp.*
+,      dept.dname
+from   emp
+,      dept
+where  dept.deptno = emp.deptno

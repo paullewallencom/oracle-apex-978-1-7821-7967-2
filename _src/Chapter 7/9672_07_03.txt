@@ -1,0 +1,10 @@
+/*************************************************************
+** Name: 9672_07_03.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This script executes an alter table statement            **
+** on the app_events table                                  **
+**                                                          **
+*************************************************************/
+Alter table app_events
+Add oracle_event varchar2(1);

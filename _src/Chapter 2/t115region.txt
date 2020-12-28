@@ -1,0 +1,10 @@
+<table class="t115Region" id="#REGION_STATIC_ID#" #REGION_ATTRIBUTES# border="0" cellpadding="0" cellspacing="0" summary="" width="97%" style="border:none;">
+<tbody class="ReportsRegion">
+<tr>
+<th class="t115RegionHeader">#TITLE#</th>
+<th class="t115ButtonHolderHeader" width="100%">#CLOSE#&nbsp;&nbsp;#PREVIOUS##NEXT#&nbsp;#DELETE##EDIT##CHANGE##CREATE##CREATE2##EXPAND##COPY##HELP#</th>
+</tr>
+<tr>
+<td class="t115RegionBody" colspan="2" bgcolor="lightgrey">#BODY#</td>
+</tr>
+</tbody>

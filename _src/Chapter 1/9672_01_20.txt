@@ -1,0 +1,27 @@
+declare
+  cursor c_emp
+      is
+         select apex_item.hidden(1,emp.id) id
+              , apex_item.display_and_save(2,emp.firstname) firstname
+              , apex_item.display_and_save(2,emp.lastname) lastname
+              , apex_item.display_and_save(2,emp.username) username
+              , apex_item.display_and_save(2,dept.name) department
+              , apex_item.display_and_save(2,job.abbreviation) job
+              , apex_item.display_and_save(2,job.description) job_desc
+           from app_employees emp
+              , app_departments dept
+              , app_jobs job
+          where emp.dept_id = dept.id
+            and emp.job_id  = job.id;
+begin
+  for r_emp in c_emp
+  loop
+    htp.p(r_emp.id);
+    htp.p(r_emp.firstname);
+    htp.p(r_emp.lastname);
+    htp.p(r_emp.username);
+    htp.p(r_emp.department);
+    htp.p(r_emp.job);
+    htp.p(r_emp.job_desc);
+  end loop;
+end;

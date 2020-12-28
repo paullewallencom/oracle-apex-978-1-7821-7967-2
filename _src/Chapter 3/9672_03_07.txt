@@ -1,0 +1,13 @@
+/*************************************************************
+** Name: 9672_03_07.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** The code below is Javascript code and describes the      **
+** set_div function. The function puts some text in a div   **
+**                                                          **
+*************************************************************/
+<script type="text/javascript">
+function set_div(){
+document.getElementById("dynamicdiv").innerHTML = "This is some text in a div";
+}
+</script>

@@ -1,0 +1,28 @@
+/*************************************************************
+** Name: 9672_03_02.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This Javascript code checks the salary raise and if it   **
+** is more than 10% a popup appears where the user can      **
+** confirm. If cancel is clicked, the original value is     **
+** copied into the text field                               **
+*************************************************************/
+<script type="text/javascript">
+  var oldsal = 0;
+  function remember_oldsal(salary)
+  {
+    oldsal = salary;
+  }
+
+  function validate_sal(sal_id, salary)
+  {
+    if (salary > (oldsal * 1.10))
+    {
+      var r = confirm("Are you sure you want to change this salary to " + salary);
+      if (r == false)
+      {
+        $("#"+sal_id).val(oldsal);
+      }
+    }
+  }
+</script>

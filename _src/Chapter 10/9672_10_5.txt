@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+  ServerName nl.apexbook.xyz
+  ServerAlias nl.apexbook.xyz
+  
+  RewriteEngine On
+  RewriteRule ^/$ /apex/f?p=200:101::LANG:::FSP_LANGUAGE_PREFERENCE:nl [R=301,L]
+  
+  ProxyPass /apex http://192.168.0.1:7001/apex
+  ProxyPassReverse /apex http://192.168.0.1:7001/apex
+  ProxyPass /i http://192.168.0.1:7001/i
+  ProxyPassReverse /i http:// 192.168.0.1:7001/i
+</VirtualHost>

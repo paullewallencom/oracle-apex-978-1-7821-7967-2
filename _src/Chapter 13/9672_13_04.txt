@@ -1,0 +1,5 @@
+begin
+  update emp
+  set    deptno = :PXX_DEPTNO
+  where  empno  = :PXX_EMPNO;
+end;

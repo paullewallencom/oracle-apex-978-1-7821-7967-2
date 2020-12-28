@@ -1,0 +1,17 @@
+/*************************************************************
+** Name: 9672_03_11.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This code needs to be copied into the page HTML header   **
+** and executes a pulsating effect on the news region       **
+**                                                          **
+*************************************************************/
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+google.load("prototype", "1");
+google.load("scriptaculous", "1");
+function pulsate_news() {
+    Effect.Pulsate('news', {'pulses' : 15, 'duration' : 3.0});
+}
+google.setOnLoadCallback(pulsate_news);
+</script>

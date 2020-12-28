@@ -1,0 +1,4 @@
+if :Pxx_BIRTHDAY > (sysdate - (13*365))
+then
+   raise_application_error (-20001,'You must be at least 13 years old to register.');
+end if;

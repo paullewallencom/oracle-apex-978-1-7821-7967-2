@@ -1,0 +1,10 @@
+/*************************************************************
+** Name: 9672_10_7.txt                                      **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** replace <password> by your password                      **
+*************************************************************/
+<role rolename="Manager"/>
+<role rolename="Admin"/>
+<user username="manager" password="<password>" roles="Manager"/>
+<user username="admin" password="<password>" roles="Admin"/>

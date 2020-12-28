@@ -1,0 +1,4 @@
+select 1 
+from   app_users 
+where  username = :APP_USER 
+and    role = 'ADMIN'

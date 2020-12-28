@@ -1,0 +1,9 @@
+/*************************************************************
+** Name: 9672_07_11.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This script synchronizes the table so that it is         **
+** included in the APEX dictionary                          **
+**                                                          **
+*************************************************************/
+exec apex_ui_default_update.synch_table('APP_EVENTS');

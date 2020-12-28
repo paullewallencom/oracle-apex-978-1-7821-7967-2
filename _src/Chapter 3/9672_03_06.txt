@@ -1,0 +1,28 @@
+/*************************************************************
+** Name: 9672_03_06.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** The query selects the records where the text contains    **
+** the tag where the user clicked on                        **
+**                                                          **
+**                                                          **
+*************************************************************/
+declare
+  cursor c_nws is
+    select title
+    ,      text
+    from   app_news
+    where  upper(text) like '%'||upper(:PXX_TAG)||'%';
+  --
+  l_text varchar2(32000) := '';
+begin
+  for r_nws in c_nws
+  loop
+    l_text := l_text || '<h1>' || r_nws.title || '</h1>';
+    l_text := l_text || '<br>';
+    l_text := l_text || replace(r_nws.text,:PXX_TAG,'<b>'||:PXX_TAG||'</b>');
+    l_text := l_text || '<br>';
+    l_text := l_text || '<br>';
+  end loop;
+  return l_text;
+end;

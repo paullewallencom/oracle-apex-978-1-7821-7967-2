@@ -1,0 +1,14 @@
+declare
+  p_dlr_id         number(3);
+  p_dlr_name       varchar2(100);
+  p_dlr_address1   varchar2(100);
+  p_dlr_city       varchar2(100);
+  p_dlr_state      varchar2(100);
+  p_dlr_country_cd varchar2(100);
+  p_md5            varchar2(100);
+begin
+  p_dlr_id := 14;
+  dlr_package.get_app_dealers(p_dlr_id,p_dlr_name, p_dlr_address1, p_dlr_city, p_dlr_state, p_dlr_country_cd);
+  dbms_output.put_line('Result: '||p_dlr_name||'..'||p_dlr_address1);
+end;
+/

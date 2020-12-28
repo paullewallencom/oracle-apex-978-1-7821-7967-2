@@ -1,0 +1,5 @@
+SELECT NULL LINK
+,      trunc(date_time) date_time
+,      count(trunc(date_time)) value
+FROM   gm_coordinates
+group by trunc(date_time)

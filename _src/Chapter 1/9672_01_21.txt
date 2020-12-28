@@ -1,0 +1,16 @@
+htp.tableopen;
+
+  for r_emp in c_emp
+  loop
+      htp.tablerowopen;
+        htp.tabledata(r_emp.id);
+        htp.tabledata(r_emp.firstname);
+        htp.tabledata(r_emp.lastname);
+        htp.tabledata(r_emp.username);
+        htp.tabledata(r_emp.department);
+        htp.tabledata(r_emp.job);
+        htp.tabledata(r_emp.job_desc);
+      htp.tablerowclose;
+  end loop;
+
+  htp.tableclose;

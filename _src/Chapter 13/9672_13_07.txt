@@ -1,0 +1,1 @@
+document.getElementById("last_visit").innerHTML="Last successful login on this machine: " + localStorage.last_login_time;

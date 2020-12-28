@@ -1,0 +1,5 @@
+<source>Username</source>
+<target>Gebruikersnaam</target>
+
+<source>Password</source>
+<target>Wachtwoord</target>

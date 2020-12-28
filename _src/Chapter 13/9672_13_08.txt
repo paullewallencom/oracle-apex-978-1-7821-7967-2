@@ -1,0 +1,25 @@
+/*************************************************************
+** Name: 9672_13_08.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** For PX_SWITCH, PX_LATITUDE and PX_LONGITUDE, replace     **
+** X by the page number where you are working on            **
+*************************************************************/
+--Function to get the location
+  function get_location_int() {
+    if (document.getElementById('PX_SWITCH').value=='Y') {
+    navigator.geolocation.getCurrentPosition(loop_coord);
+    }
+  }
+
+--Function to write the coordinates into a table
+  function loop_coord(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    var ajaxRequest = new htmldb_Get(null,&APP_ID.,'APPLICATION_PROCESS=write_coordinate',0);
+    ajaxRequest.add('PX_LATITUDE',latitude);
+    ajaxRequest.add('PX_LONGITUDE',longitude);
+    ajaxResult = ajaxRequest.get();
+    document.getElementById('PX_LATITUDE').value = latitude;
+    document.getElementById('PX_LONGITUDE').value =  longitude;
+  }

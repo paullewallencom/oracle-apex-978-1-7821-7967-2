@@ -1,0 +1,8 @@
+update app_users
+set    role     = ‘DEFAULT’
+where  username = ...;
+
+
+update app_users
+set    role     = ‘ADMIN’
+where  username = ...;

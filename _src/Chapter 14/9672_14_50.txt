@@ -1,0 +1,33 @@
+/*************************************************************
+** Name: 9672_14_50.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** Replace XX by the page number you are working on         **
+*************************************************************/
+declare
+  cursor c_emp is
+    select emp.empno
+    ,      emp.ename
+    ,      emp.job
+    ,      emp.hiredate
+    ,      emp.sal
+    ,      dept.dname
+    from   emp
+    ,      dept
+    where  dept.deptno = emp.deptno
+    and    ((:PXX_EMPNO is null and emp.empno = (select min(empno) from emp))
+           or (:PXX_EMPNO is not null and emp.empno = :PXX_EMPNO));
+  --
+  r_emp c_emp%rowtype;
+begin
+  open c_emp;
+  fetch c_emp into r_emp;
+  close c_emp;
+  --
+  :PXX_EMPNO      := r_emp.empno;
+  :PXX_ENAME      := r_emp.ename;
+  :PXX_job        := r_emp.job;
+  :PXX_HIREDATE   := r_emp.hiredate;
+  :PXX_SAL        := r_emp.sal;
+  :PXX_DEPARTMENT := r_emp.dname;
+end;

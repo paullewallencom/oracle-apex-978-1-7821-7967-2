@@ -1,0 +1,20 @@
+/*************************************************************
+** Name: 9672_03_26.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** The code below needs to be copied into the template      **
+** text field in the definition section of the template     **
+**                                                          **
+*************************************************************/
+<div id="#REGION_STATIC_ID#" #REGION_ATTRIBUTES#>
+#BODY##SUB_REGION_HEADERS##SUB_REGIONS#
+</div>
+<link rel="stylesheet" href="#IMAGE_PREFIX#libraries/jquery-ui/1.8/themes/base/jquery.ui.accordion.css" type="text/css" />
+
+<script src="#IMAGE_PREFIX#libraries/jquery-ui/1.8/ui/minified/jquery.ui.accordion.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+apex.jQuery(function() {
+apex.jQuery("##REGION_STATIC_ID#").accordion();
+});
+</script>

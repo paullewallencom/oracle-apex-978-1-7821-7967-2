@@ -1,0 +1,47 @@
+/*************************************************************
+** Name: 9672_07_05.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** The code in this script should be used in a page process **
+** to update the app_events table with the correct check-   **
+** box values                                               **
+*************************************************************/
+declare
+  type           t_event is table of varchar2(10) index by binary_integer;
+  v_event        t_event;
+  l_index        number(3);
+  l_oracle_event varchar2(10);
+begin
+  -- use a pl/sql table to put the 'Y' in the
+  -- right index
+  for a in 1..apex_application.g_f06.count
+  loop
+    if apex_application.g_f06.exists(a)
+    then
+      l_index := to_number(apex_application.g_f06(a));
+      v_event(l_index) := 'Y';
+    end if;
+  end loop;
+  --
+  -- Loop through the records
+  for i in 1..apex_application.g_f01.count
+  loop
+    -- if the pl/sql table contains a value for this
+    -- row, oracle_event has to be set to 'Y'. Otherwise
+    -- leave oracle_event to null
+    if v_event.exists(to_number(apex_application.g_f01(i)))
+    then
+      l_oracle_event := v_event(to_number(apex_application.g_f01(i)));
+    else
+      l_oracle_event := null;
+    end if;
+    --
+    update app_events
+    set    event        = apex_application.g_f02(i)
+    ,      event_date   = to_date(apex_application.g_f03(i),'dd-mm-yyyy')
+    ,      location     = apex_application.g_f04(i)
+    ,      event_type   = apex_application.g_f05(i)
+    ,      oracle_event = l_oracle_event
+    where  id           = to_number(apex_application.g_f01(i));
+  end loop;
+end;

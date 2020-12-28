@@ -1,0 +1,2 @@
+alter table EMP
+add gender varchar2(1);

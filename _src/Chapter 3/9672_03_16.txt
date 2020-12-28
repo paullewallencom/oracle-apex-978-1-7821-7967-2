@@ -1,0 +1,15 @@
+/*************************************************************
+** Name: 9672_03_16.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This script calls the APEX_MAIL package to send emails   **
+**                                                          **
+**                                                          **
+*************************************************************/
+begin
+  apex_mail.send(
+        p_to       => 'your company’s public info email address',
+        p_from     => :P1_EMAIL,
+        p_body     => :P1_TEXT,
+        p_subj     => :P1_SUBJECT);
+end;

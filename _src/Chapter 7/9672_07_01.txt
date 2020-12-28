@@ -1,0 +1,13 @@
+/*************************************************************
+** Name: 9672_07_01.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This script executes a select statement                  **
+**                                                          **
+**                                                          **
+*************************************************************/
+select apex_item.hidden(1,id)||apex_item.text(2,event) appevent
+,      apex_item.date_popup(3,rownum,event_date,'dd-mm-yyyy') date
+,      apex_item.text(4,location) location
+,      apex_item.text(5,event_type) event_type
+from   app_events;

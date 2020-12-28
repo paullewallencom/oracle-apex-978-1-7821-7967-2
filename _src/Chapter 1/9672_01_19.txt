@@ -1,0 +1,11 @@
+declare
+  l_result varchar2(100);
+begin
+  app_search_user(:P15_TWITTER,l_result);
+  if l_result = 'user found'
+  then
+    return null;
+  else
+    return 'no valid user';
+  end if;
+end;

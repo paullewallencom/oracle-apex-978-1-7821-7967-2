@@ -1,0 +1,28 @@
+begin
+  dbms_network_acl_admin.create_acl (
+    acl         => 'utl_http.xml',
+    description => 'HTTP Access',
+    principal   => '<oracle username>',
+    is_grant    => TRUE,
+    privilege   => 'connect',
+    start_date  => null,
+    end_date    => null
+  );
+
+  dbms_network_acl_admin.add_privilege (
+    acl        => 'utl_http.xml',
+    principal  => '<oracle username>',
+    is_grant   => TRUE,
+    privilege  => 'resolve',
+    start_date => null,
+    end_date   => null
+  );
+
+ dbms_network_acl_admin.assign_acl (
+    acl        => 'utl_http.xml'
+    host       => 'api.twitter.com'
+    lower_port => 80
+    upper_port => 80  );
+  commit;
+end;
+/

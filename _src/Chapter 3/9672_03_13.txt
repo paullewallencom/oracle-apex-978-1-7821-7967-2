@@ -1,0 +1,17 @@
+/*************************************************************
+** Name: 9672_03_13.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** this script execute a query on app_customers             **
+**                                                          **
+**                                                          **
+*************************************************************/
+select chr(64+rownum) label
+,      cust_first_name
+,      cust_last_name
+,      cust_street_address1
+,      cust_city
+,      cust_state
+,      cust_postal_code
+from app_customers
+order by customer_id

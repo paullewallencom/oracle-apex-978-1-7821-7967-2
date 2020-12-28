@@ -1,0 +1,18 @@
+select ctt.firstname
+     , ctt.lastname
+     , ctt.contact_type
+     , ads.address_type
+     , ads.address_line1
+     , ads.address_line2
+     , ads.postcode
+     , ads.city
+     , ads.state
+     , ads.country
+     , aac.default_yn
+     , ctt.id contact_id
+     , ads.id address_id
+  from app_contacts ctt
+     , app_addresses ads
+     , app_ads_ctt aac
+ where aac.ctt_id = ctt.id
+   and aac.ads_id = ads.id

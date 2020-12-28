@@ -1,0 +1,4 @@
+select rv_meaning display_value
+     , rv_low_value return_value
+  from app_ref_codes
+ where rv_domain = 'ADDRESSES'

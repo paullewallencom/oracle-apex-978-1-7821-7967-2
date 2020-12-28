@@ -1,0 +1,9 @@
+<script>
+navigator.geolocation.getCurrentPosition (function (pos)
+{
+  var P4_LATITUDE = pos.coords.latitude;
+  var P4_LONGITUDE = pos.coords.longitude;
+  $("#P4_LATITUDE").val (P4_LATITUDE);
+  $("#P4_LONGITUDE").val (P4_LONGITUDE);
+});
+</script>

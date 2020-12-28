@@ -1,0 +1,40 @@
+.bgregion {
+border: 1px solid;
+background-color:lightblue;
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+	font-weight: normal;
+	padding: 0 10px 0 0;
+	text-align: center;
+}
+
+button span {
+	position: relative;
+	display: block;
+	white-space: nowrap;
+	font-size: 13px;
+	padding: 0 4px 0 15px;
+}
+
+button.button_custom {
+    background: transparent url('../images/rb_a.GIF') no-repeat scroll top right;
+    color: black;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    font-face:bold;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+button.button_custom span {
+    background: transparent url('../images/rb_span.GIF') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}

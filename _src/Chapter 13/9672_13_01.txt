@@ -1,0 +1,53 @@
+/* CSS code for the div where the employee can be dropped */
+.dropdiv {
+    border: 2px solid #838383;
+    box-shadow: 3px 3px 3px #BDBEBD;
+    border-radius: 5px 5px 5px 5px;
+    display: block;
+    min-height: 300px;
+    width: 200px;
+    padding: 16px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+/* CSS code for the H1 tag */
+h1 {
+    font: bold 21px/21px Helvetica, Arial, Sans-serif;
+    text-shadow: 0px -1px 2px rgba(0, 0, 0, 0.5);
+    margin: 0px;
+    -moz-box-flex: 1;
+    text-align: center;
+}
+/* CSS code for the div to be dragged */
+.dnddiv {
+    background-image: linear-gradient(#A4A4A4, #848484);
+    background-image: -o-linear-gradient(#A4A4A4, #848484);
+    background-image: -moz-linear-gradient(#A4A4A4, #848484);
+    background-image: -webkit-linear-gradient(#A4A4A4, #848484);
+    background-image: -ms-linear-gradient(#A4A4A4, #848484);
+    border: 1px solid #848484;
+    cursor: pointer;
+    display: block;
+    min-height: 10px;
+    width: 50px;
+    padding: 4px;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+/* CSS code for the div to be dragged, when hovered with the mouse */
+.dnddiv:hover {
+    box-shadow: 0px 1px 8px #BDBEBD;
+    background-image: linear-gradient(#F4F4F4, #A4A4A4);
+    background-image: -o-linear-gradient(#F4F4F4, #A4A4A4);
+    background-image: -moz-linear-gradient(#F4F4F4, #A4A4A4);
+    background-image: -webkit-linear-gradient(#F4F4F4, #A4A4A4);
+    background-image: -ms-linear-gradient(#F4F4F4, #A4A4A4);
+    border: 1px solid #151515;
+    cursor: pointer;
+    display: block;
+    min-height: 10px;
+    width: 50px;
+    padding: 4px;
+    text-decoration: none;
+    margin-bottom: 8px;
+}

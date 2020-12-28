@@ -1,0 +1,5 @@
+select null link
+     , STATE label
+     , COUNT(CONTACT_ID) value 
+  from  APP_VW_CONTACTS
+ group by STATE

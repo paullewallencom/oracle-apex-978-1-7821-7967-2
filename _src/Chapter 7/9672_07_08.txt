@@ -1,0 +1,35 @@
+/*************************************************************
+** Name: 9672_07_08.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** Script to count the page clicks                          **
+** For host and port, enter the name of you APEX host       **
+** and port.                                                **
+** For <<NAME_OF_YOUR_WORKSPACE>>, enter the name of the    **
+** workspace where your application is running.             **
+*************************************************************/
+declare
+  cursor c_nws is
+    select id
+    ,      title
+    ,      date_published
+    ,      substr(text,1,300)||'...' text
+    from   app_news;
+  --
+  l_url VARCHAR2(255);
+  l_cat VARCHAR2(30);
+  l_workspace_id VARCHAR2(30);
+begin
+  for r_nws in c_nws
+  loop
+    l_url := 'http://host:port/apex/f?p=&APP_ID.:2:&APP_SESSION.::NO::P2_ID:'||r_nws.id;
+    l_workspace_id := TO_CHAR(APEX_UTIL.FIND_SECURITY_GROUP_ID('<<NAME_OF_YOUR_WORKSPACE>>'));
+    l_cat := 'news';
+    --
+    htp.print('<h1>'||r_nws.title||'</h1>');
+    htp.print(r_nws.date_published);
+    htp.print(r_nws.text);
+    htp.print('<br>');
+    htp.print('<a href="http://host:port/apex/z?p_url=' || l_url || '&p_cat=' || l_cat || '&p_workspace=' || l_workspace_id || '">[read more]</a>');
+  end loop;
+end;

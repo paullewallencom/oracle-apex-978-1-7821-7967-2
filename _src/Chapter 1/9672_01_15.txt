@@ -1,0 +1,11 @@
+declare
+  l_comm number;
+begin
+  if :P5_DEPTNO = 30
+  then
+    l_comm := :P5_SAL * 1.10;
+  else
+    l_comm := :P5_SAL * 1.05;
+  end if;
+  return l_comm;
+end;

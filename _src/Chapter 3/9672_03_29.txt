@@ -1,0 +1,36 @@
+/*************************************************************
+** Name: 9672_03_29.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This script executes a query on the APP_EVENTS table     **
+** and displays the contents via sys.htp.p                  **
+**                                                          **
+*************************************************************/
+declare
+  cursor c_aet is
+    select rownum line
+    ,      event_type
+    ,      event_date
+    ,      event
+    ,      location
+    from   (select decode(row_number() over (partition by event_type order by event_type),1,event_type,null) event_type
+            ,      event_date
+            ,      event
+            ,      location
+            from app_events);
+begin
+  for r_aet in c_aet
+  loop
+    if r_aet.event_type is not null
+    then
+      if r_aet.line != 1
+      then
+        sys.htp.p('</div>');
+      end if;
+      sys.htp.p('<h3><a href="#">'||r_aet.event_type||'</a></h3>');
+      sys.htp.p('<div>');
+    end if;
+    sys.htp.p('<b>'||to_char(r_aet.event_date,'DD-MM-YYYY')||'</b>'||': '||r_aet.event||', '||r_aet.location);
+    sys.htp.p('<br>');
+  end loop;
+end;

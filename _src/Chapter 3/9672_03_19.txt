@@ -1,0 +1,9 @@
+/*************************************************************
+** Name: 9672_03_19.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This code needs to be copies into the number/date        **
+** format text field                                        **
+**                                                          **
+*************************************************************/
+DOWNLOAD:APP_DOCUMENTS:DOC_CONTENT:ID:

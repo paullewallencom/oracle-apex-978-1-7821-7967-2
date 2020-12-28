@@ -1,0 +1,52 @@
+create or replace procedure app_search_user (p_search   in  varchar2
+                                            ,p_result   out varchar2)
+is
+  l_request      utl_http.req;
+  l_response     utl_http.resp;
+  l_tweet_url    varchar2(255) := 'http://api.twitter.com/1/users/lookup.xml';
+  l_content      varchar2(255) := 'screen_name='||p_search;
+  l_line         varchar2(1024);
+  l_result       varchar2(100) := 'no user';
+  l_user         varchar2(100) := 'your user name';
+  l_password     varchar2(100) := 'your password';
+begin
+  -- build the request statement
+  l_request   := utl_http.begin_request(url    => l_tweet_url
+                                       ,method => 'POST');
+  -- set header
+  utl_http.set_header(r     => l_request
+                     ,name  => 'Content-Length'
+                     ,value => length(l_content));
+  -- authenticate the user
+  utl_http.set_authentication(r        => l_request
+                             ,username => l_user
+                             ,password => l_password);
+  -- write the content
+  utl_http.write_text(r    => l_request
+                     ,data => l_content); 
+  -- get the response
+  l_response := utl_http.get_response(r => l_request);
+  begin
+    loop
+      utl_http.read_line(r           => l_response
+                        ,data        => l_line
+                        ,remove_crlf => true);
+      if instr(l_line,'<screen_name>') > 0
+      then
+        l_result := 'user found';
+      end if;
+    end loop;
+  exception
+    when utl_http.end_of_body
+    then
+      null;
+  end;
+  utl_http.end_response(r => l_response);
+  p_result := l_result;
+exception
+  when others then
+    utl_http.end_response(r => l_response);
+    p_result := 'request failed';
+    raise;
+end app_search_user;
+/

@@ -1,0 +1,19 @@
+/*************************************************************
+** Name: 9672_07_02.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This script updates the app_events table.                **
+** Should be used in a page process                         **
+**                                                          **
+*************************************************************/
+begin
+  for i in 1..apex_application.g_f01.count
+  loop
+    update app_events
+    set    event      = apex_application.g_f02(i)
+    ,      event_date = to_date(apex_application.g_f03(i),’dd-mm-yyyy’)
+    ,      location   = apex_application.g_f04(i)
+    ,      event_type = apex_application.g_f05(i)
+    where  id         = to_number(apex_application.g_f01(i));
+  end loop;
+end;

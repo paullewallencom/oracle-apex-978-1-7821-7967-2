@@ -1,0 +1,19 @@
+/*************************************************************
+** Name: 9672_07_15.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This scripts starts a job.                               **
+**                                                          **
+**                                                          **
+*************************************************************/
+declare
+  l_sql VARCHAR2(4000);
+  l_job NUMBER;
+begin
+  l_sql := 'begin'||
+           '  -- here goes your code to send emails'||
+           '  app_mail.send_mail;'||
+           'end;';
+  l_job := apex_plsql_job.submit_process(p_sql    => l_sql
+                                        ,p_status => 'Send mail job started');
+end;

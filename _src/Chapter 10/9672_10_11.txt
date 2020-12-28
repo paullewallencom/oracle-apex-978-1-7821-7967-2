@@ -1,0 +1,43 @@
+begin 
+  dbms_network_acl_admin.create_acl (acl         => 'acl_anm.xml'
+                                    ,description => 'Description' 
+                                    ,principal   => 'ANONYMOUS' 
+                                    ,is_grant    => true 
+                                    ,privilege   => 'connect' 
+                                    ,start_date  => null 
+                                    ,end_date    => null);  
+  --   
+  DBMS_NETWORK_ACL_ADMIN.ADD_PRIVILEGE(acl       => 'acl_anm.xml'
+                                      ,principal => 'ANONYMOUS'
+                                      ,is_grant  => true 
+                                      ,privilege => 'resolve');  
+  --  
+  DBMS_NETWORK_ACL_ADMIN.ASSIGN_ACL(acl  => 'acl_anm.xml' 
+                                   ,host => '127.0.0.1'
+                                   ,lower_port => 4000
+                                   ,upper_port => 4000);  
+  --  
+  commit;  
+end;  
+/ 
+
+begin 
+  dbms_network_acl_admin.create_acl (acl         => 'acl_db.xml'
+                                    ,description => 'Description' 
+                                    ,principal   => '<dbusr>' 
+                                    ,is_grant    => true 
+                                    ,privilege   => 'connect' 
+                                    ,start_date  => null 
+                                    ,end_date    => null);  
+  --   
+  DBMS_NETWORK_ACL_ADMIN.ADD_PRIVILEGE(acl       => 'acl_db.xml'
+                                      ,principal => '<dbusr>'
+                                      ,is_grant  => true 
+                                      ,privilege => 'resolve');  
+  --  
+  DBMS_NETWORK_ACL_ADMIN.ASSIGN_ACL(acl  => 'acl_db.xml' 
+                                   ,host => '*');  
+  --  
+  commit;  
+end;  
+/

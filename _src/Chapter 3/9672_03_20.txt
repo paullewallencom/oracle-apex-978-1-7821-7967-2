@@ -1,0 +1,9 @@
+/*************************************************************
+** Name: 9672_03_20.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** the code below describe the format mask                  **
+**                                                          **
+**                                                          **
+*************************************************************/
+DOWNLOAD:<TABLE_NAME>:<BLOB COLUMN NAME>:<PRIMARY KEY COLUMN NAME>:

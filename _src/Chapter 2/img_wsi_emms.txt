@@ -1,0 +1,1 @@
+<img src="#WORKSPACE_IMAGES#emms.GIF">

@@ -1,0 +1,15 @@
+/*************************************************************
+** Name: 9672_07_12.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This script sets the default display width of the        **
+** EVENT column of table APP_EVENTS to 200                  **
+**                                                          **
+*************************************************************/
+begin
+  apex_ui_default_update.upd_item_display_width(
+           p_table_name    => 'APP_EVENTS'
+          ,p_column_name   => 'EVENT'
+          ,p_display_width => 200);
+end;
+/

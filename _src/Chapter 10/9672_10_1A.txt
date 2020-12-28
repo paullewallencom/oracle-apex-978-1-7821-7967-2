@@ -1,0 +1,46 @@
+/*************************************************************
+** Name: 9672_10_1A.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** APEX error handling function                             **
+** for PX_HIREDATE, replace X by the page number where you  **
+** are working on                                           **
+*************************************************************/
+create or replace
+function handle_apex_error (p_error in apex_error.t_error)
+return apex_error.t_error_result
+is
+  l_result apex_error.t_error_result;
+begin
+  l_result := apex_error.init_error_result (p_error => p_error);
+  --
+  insert into app_error_log
+  (message
+  ,display_location
+  ,association_type
+  ,page_item_name
+  ,region_id
+  ,row_num
+  ,apex_error_code
+  ,ora_sqlcode
+  ,ora_sqlerrm
+  ,error_date)
+  values
+  (p_error.message
+  ,p_error.display_location
+  ,p_error.association_type
+  ,p_error.page_item_name
+  ,p_error.region_id
+  ,p_error.row_num
+  ,p_error.apex_error_code
+  ,p_error.ora_sqlcode
+  ,p_error.ora_sqlerrm
+  ,sysdate);
+  --
+  if l_result.page_item_name = 'PX_HIREDATE'
+  then
+    l_result.display_location := apex_error.c_inline_with_field_and_notif;
+  end if;  
+  --
+  return l_result;
+end;

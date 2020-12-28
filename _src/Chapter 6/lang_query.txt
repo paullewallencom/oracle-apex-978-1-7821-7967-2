@@ -1,0 +1,9 @@
+select emp.empno
+, emp.ename
+, job.job_title
+, emp.hiredate
+, emp.sal
+from emp_lang emp
+, emp_job_titles job
+where emp.job_no = job.job_no
+and upper(job.language) = upper(apex_util.get_session_lang)

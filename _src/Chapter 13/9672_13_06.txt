@@ -1,0 +1,2 @@
+<div id="last_visit">
+</div>

@@ -1,0 +1,33 @@
+create or replace function app_auth (p_username in VARCHAR2, p_password in VARCHAR2)
+return BOOLEAN
+is
+  l_password varchar2(4000);
+  l_stored_password varchar2(4000);
+  l_expires_on date;
+  l_count number;
+begin
+  select count(*) 
+    into l_count 
+    from app_users 
+   where upper(username) = upper(p_username);
+
+  if l_count > 0 
+  then
+    select password 
+      into l_stored_password
+      from app_users 
+      where upper(username) = upper(p_username);
+
+    l_password := app_hash(p_username, p_password);
+
+    if l_password = l_stored_password 
+    then
+      return true;
+    else
+      return false;
+    end if;
+  else
+    return false;
+  end if;
+
+end;

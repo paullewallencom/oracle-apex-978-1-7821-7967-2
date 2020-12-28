@@ -1,0 +1,17 @@
+/*************************************************************
+** Name: 9672_03_14.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This script uses the sys.htp.p function to display       **
+** the youtube embed code                                   **
+**                                                          **
+*************************************************************/
+sys.htp.p('<object width="640" height="385">');
+sys.htp.p('<param name="movie" value="'||:PXX_VIDEO||'&hl=nl_NL&autoplay=1&fs=1&">');
+sys.htp.p('</param>');
+sys.htp.p('<param name="allowFullScreen" value="true">');
+sys.htp.p('</param>');
+sys.htp.p('<param name="allowscriptaccess" value="always">');
+sys.htp.p('</param><embed src="'||:PXX_VIDEO||'&hl=nl_NL&autoplay=1&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385">');
+sys.htp.p('</embed>');
+sys.htp.p('</object>');

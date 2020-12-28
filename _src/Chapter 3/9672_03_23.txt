@@ -1,0 +1,9 @@
+/*************************************************************
+** Name: 9672_03_23.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This command calls an APEX page from within Forms        **
+**                                                          **
+**                                                          **
+*************************************************************/
+web.show_document('http://apexhost:8000/apex/f?p=12133:10','_blank');

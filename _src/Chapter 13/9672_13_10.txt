@@ -1,0 +1,39 @@
+function render_video (
+    p_item                in apex_plugin.t_page_item,
+    p_plugin              in apex_plugin.t_plugin,
+    p_value               in varchar2,
+    p_is_readonly         in boolean,
+    p_is_printer_friendly in boolean )
+    return apex_plugin.t_page_item_render_result
+is
+  -- for every attribute a variable
+  l_video_src_webm apex_application_page_items.attribute_01%type := p_item.attribute_01;
+  l_video_src_ogg  apex_application_page_items.attribute_02%type := p_item.attribute_02;
+  l_video_src_mp4  apex_application_page_items.attribute_03%type := p_item.attribute_03;
+  l_video_cap      apex _application_page_items.attribute_04%type := p_item.attribute_04;
+  l_result         apex_plugin.t_page_item_render_result;
+begin
+  -- print the video tag
+  -- when available, print the source tag for the
+  -- different types
+  sys.htp.p('<video width="640" height="480" controls="controls" >');
+  if l_video_src_mp4 is not null
+  then
+    sys.htp.p('<source src="'||l_video_src_mp4||'" type="video/mp4" />');
+  end if;
+  if l_video_src_webm is not null
+  then
+    sys.htp.p('<source src="'||l_video_src_webm||'" type="video/webm" />');
+  end if;
+  if l_video_src_ogg is not null
+  then
+    sys.htp.p('<source src="'||l_video_src_ogg||'" type="video/ogg" />');
+  end if;
+  -- When the browser is not able
+  -- to display one of the three sources, it will display 
+  -- the message below
+  sys.htp.p('Your browser does not support the video tag.');
+  sys.htp.p('</video>');
+  --
+  return l_result;
+end render_video;

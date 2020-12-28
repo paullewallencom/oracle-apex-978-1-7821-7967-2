@@ -1,0 +1,29 @@
+function is_admin (p_authorization in apex_plugin.t_authorization
+                  ,p_plugin        in apex_plugin.t_plugin)
+return apex_plugin.t_authorization_exec_result
+is
+  cursor c_usr  (b_role in varchar2) is
+    select 1
+    from   app_users
+    where  username = p_authorization.username
+    and    role = b_role;
+  --
+  r_usr       c_usr%rowtype;
+  l_usr_found boolean;
+  l_role      varchar2(4000) := p_authorization.attribute_01;
+  l_result    apex_plugin.t_authorization_exec_result;
+begin
+  open c_usr(l_role);
+  fetch c_usr into r_usr;
+  l_usr_found := c_usr%found;
+  close c_usr;
+  --
+  if l_usr_found
+  then
+    l_result.is_authorized := true;
+  else
+    l_result.is_authorized := false;
+  end if;
+  --
+  return l_result;
+end is_admin;

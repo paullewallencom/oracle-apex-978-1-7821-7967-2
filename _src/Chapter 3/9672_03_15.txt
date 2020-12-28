@@ -1,0 +1,18 @@
+/*************************************************************
+** Name: 9672_03_15.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** The code below can be used in an HTML file and embeds    **
+** a youtube video                                          **
+**                                                          **
+*************************************************************/
+<object width="640" height="385">
+<param name="movie" value="http://www.youtube.com/v/vwx814B9ed8&hl=nl_NL&fs=1&">
+</param>
+<param name="allowFullScreen" value="true">
+</param>
+<param name="allowscriptaccess" value="always">
+</param>
+<embed src="http://www.youtube.com/v/vwx814B9ed8&hl=nl_NL&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385">
+</embed>
+</object>

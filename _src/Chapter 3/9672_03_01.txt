@@ -1,0 +1,10 @@
+/*************************************************************
+** Name: 9672_03_01.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This Javascript code calls the remember_oldsal function  **
+** when the text item gets the focus and calls the          **
+** validate_sal function when the value of the text field   **
+** has changed                                              **
+*************************************************************/
+onfocus=remember_oldsal(this.value); onchange=validate_sal(this.id,this.value);

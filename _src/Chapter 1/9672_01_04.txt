@@ -1,0 +1,7 @@
+select null link
+     , dept.name label
+     , COUNT(emp.ID) value1
+  from APP_EMPLOYEES emp
+     , APP_DEPARTMENTS dept
+ where emp.dept_id = dept.id
+ group by dept.name

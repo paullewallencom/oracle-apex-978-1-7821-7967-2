@@ -1,0 +1,38 @@
+/*************************************************************
+** Name: 9672_03_25.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This piece of code populates the intersection table      **
+** between APP_NWS and APP_TAGS                             **
+**                                                          **
+*************************************************************/
+declare
+  cursor c_app_tags
+  is
+    select id
+    ,      tag
+    from   app_tags
+    order by id;
+  --
+  cursor c_instr(b_tag in varchar2)
+  is
+    select id
+    ,      instr(upper(text),upper(b_tag)) tag_found
+    from   app_news;
+begin
+  delete from app_tgs_nws;
+  --
+  for r_app_tags in c_app_tags
+  loop
+    for r_instr in c_instr(r_app_tags.tag)
+    loop
+      if r_instr.tag_found > 0
+      then
+        insert into app_tgs_nws
+        values (r_app_tags.id,r_instr.id);
+      end if;
+    end loop;
+  end loop;
+  --
+  commit;
+end;

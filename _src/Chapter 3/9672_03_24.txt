@@ -1,0 +1,15 @@
+/*************************************************************
+** Name: 9672_03_24.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** this script calls an APEX application from within Forms  **
+**                                                          **
+**                                                          **
+*************************************************************/
+declare
+  l_country varchar2(100) := ‘United States’;
+  l_url     varchar2(255) := ’http://apexhost:8000/apex/f?p=12133:8:::NO::P8_COUNTRY:’;
+begin
+  l_url := l_url || l_country;
+  web.show_document(l_url,'_blank');
+end;

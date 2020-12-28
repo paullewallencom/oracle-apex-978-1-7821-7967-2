@@ -1,0 +1,35 @@
+Declare
+--Cursor to select the deptno and dname from 
+--the dept table.
+--Put the output in a div to enable the
+--Drop functions on the department
+  cursor c_dept is
+    select '<div class="dropdiv" id="'||deptno||'" ondrop="handle_drop(this,event)" ondragover="handle_drop_over(event)"><h1>'||dname||'</h1><br>' dropdept
+    , deptno
+    from dept;
+   --
+  -- cursor to select the empno and ename from
+  -- the emp table. Put the output in a div
+  -- to enable drag functions on the employee
+  cursor c_emp (b_deptno in number) is
+    select '<div id="'||empno||'" class="dnddiv" draggable="true" ondragstart="handle_drag(event)">'||ename||'</div>' dragline
+    from emp
+    where deptno = b_deptno;
+begin
+  --Use a HTML table to format the output
+  sys.htp.print('<table>');
+  sys.htp.print('<tr>');
+  for r_dept in c_dept
+  loop
+    sys.htp.print('<td>');
+    sys.htp.print(r_dept.dropdept);
+    for r_emp in c_emp(r_dept.deptno)
+    loop
+      sys.htp.print(r_emp.dragline);
+    end loop;
+    sys.htp.print('</div>');
+    sys.htp.print('</td>');
+  end loop;
+  sys.htp.print('</tr>');
+  sys.htp.print('</table>');
+end;

@@ -1,0 +1,8 @@
+/*************************************************************
+** Name: 9672_13_13.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** For PX_INTERVAL, replace X by the page number you        **
+** are working on                                           **
+*************************************************************/
+setInterval("get_location_int()",document.getElementById('PX_INTERVAL').value);

@@ -1,0 +1,27 @@
+/*************************************************************
+** Name: 9672_03_22.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This script downloads a file                             **
+**                                                          **
+**                                                          **
+*************************************************************/
+declare
+  l_name     varchar2(100) := 'testdocument.doc';
+  l_filename bfile;
+  v_length   number(8);
+begin
+  l_filename := bfilename('DIR',l_name);
+  v_length   := dbms_lob.getlength(l_filename);
+  --
+  begin
+    owa_util.mime_header('application/octet',false);
+    htp.p ('Content-length: ' || v_length );
+    htp.p('Content-Disposition: attachment; filename="'||l_name||'"');
+    owa_util.http_header_close;
+    wpg_docload.download_file(l_filename);
+  exception
+    when others then
+      raise;
+  end;
+end;

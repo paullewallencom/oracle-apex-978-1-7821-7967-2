@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<urn:getServiceDescriptionResponse
+xmlns:urn="urn:oasis:names:tc:wsrp:v1:types">
+<urn:requiresRegistration>false</urn:requiresRegistration>
+<urn:offeredPortlets>
+<urn:PortletDescription>
+<urn:portletHandle>1092</urn:portletHandle>
+<urn:markupTypes>
+<urn:mimeType>application/xml</urn:mimeType>
+<urn:mimeType>application/json</urn:mimeType>
+</urn:markupTypes>
+<urn:groupID>1</urn:groupID>
+<urn:description/>
+<urn:title>Employees</urn:title>
+<urn:keywords/>
+</urn:PortletDescription>
+</urn:offeredPortlets>
+</urn:getServiceDescriptionResponse>

@@ -1,0 +1,46 @@
+/*************************************************************
+** Name: 9672_03_05.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This script actually shows the tag cloud                 **
+** Replace the XX with the page number you are working on   **
+**                                                          **
+*************************************************************/
+declare
+  --
+  cursor c_tags is
+    select tns.tgs_id
+    ,      tgs.tag
+    ,      count(tns.tgs_id) num_of_times
+    from   app_tgs_nws tns
+    ,      app_tags    tgs
+    where  tgs.id = tns.tgs_id
+    group by tns.tgs_id, tgs.tag
+    order by 1;
+  --
+  l_min_num number(3);
+  l_max_num number(3);
+  l_size   number(2);
+  l_multiplx number(2);
+begin
+  select min(num_of_times) min_num
+  ,      max(num_of_times) max_num
+  into   l_min_num, l_max_num
+  from   (select tns.tgs_id
+         ,      tgs.tag
+         ,      count(tns.tgs_id) num_of_times
+         from   app_tgs_nws tns
+         ,      app_tags    tgs
+         where  tgs.id = tns.tgs_id
+         group by tns.tgs_id, tgs.tag);
+  --
+  l_multiplx := round(72/l_max_num);
+  --
+  for r_tags in c_tags
+  loop
+    l_size := round(l_multiplx * r_tags.num_of_times);
+    sys.htp.print (q'!<a onmouseover="this.style.cursor='pointer';" onclick=document.getElementById("PXX_TAG").value="!'||r_tags.tag||'"; 
+style="font-size:'||to_char(l_size)||'px; text-decoration:none;">'||r_tags.tag||'</a>');    
+    sys.htp.print('  ');
+  end loop;
+end;

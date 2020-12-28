@@ -1,0 +1,9 @@
+<div id="header">
+  <div id="logo"><h2>Company X</h2><a href="#HOME_LINK#">#LOGO##REGION_POSITION_06#</a></div>
+  #REGION_POSITION_07#
+  <div id="navbar">
+    #NAVIGATION_BAR#
+    <div class="app-user">#WELCOME_USER#</div>
+    #REGION_POSITION_08#
+  </div>
+</div>

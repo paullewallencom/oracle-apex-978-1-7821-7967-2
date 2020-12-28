@@ -1,0 +1,18 @@
+/*************************************************************
+** Name: 9672_07_10.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2010                                  **
+** This script calls the apex_util.count_click builtin      **
+** Replace yourworkspace with the workspace you are working **
+** in. Also replace host:port with your own host and port.  **
+*************************************************************/
+declare
+  p_name varchar2(100) := 'apx_usr';
+begin
+   apex_util.count_click(
+    p_url        => 'http://host:port/apex/f?p=<app>:<page>:&SESSION_ID.',
+    p_cat        => p_name,
+    p_id         => null,
+    p_user       => owa_util.get_cgi_env('REMOTE_ADDR'),
+    p_company    => apex_util.find_security_group_id('YOURWORKSPACE'));
+end;

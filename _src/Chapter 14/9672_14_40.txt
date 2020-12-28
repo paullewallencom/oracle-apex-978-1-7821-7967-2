@@ -1,0 +1,7 @@
+    $('#PX_EVENT_DATE').mobiscroll().date({
+        invalid: { daysOfWeek: [0, 6], daysOfMonth: ['5/1', '12/24', '12/25'] },
+        theme: 'ios',
+        display: 'modal',
+        mode: 'scroller',
+        dateOrder: 'mmD ddyy'
+    });    

@@ -1,0 +1,4 @@
+select firstname||' '||lastname display_value
+     , id return_value
+  from app_employees
+ where dept_id = :P15_DEPARTMENTS

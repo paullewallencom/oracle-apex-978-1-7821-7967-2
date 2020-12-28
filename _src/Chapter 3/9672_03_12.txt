@@ -1,0 +1,68 @@
+/*************************************************************
+** Name: 9672_03_12.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** This script needs to be copied into the source code      **
+** of a plug-in and shows a google map on the page          **
+**                                                          **
+*************************************************************/
+function render_google_map (
+    p_region              in apex_plugin.t_region,
+    p_plugin              in apex_plugin.t_plugin,
+    p_is_printer_friendly in boolean )
+    return apex_plugin.t_region_render_result
+is
+  cursor c_cmr is
+    select cust_street_address1||', '||cust_city geoloc
+    from   app_customers
+    where  cust_street_address1 is not null
+    order by customer_id;    
+  --
+  l_width      apex_application_page_regions.attribute_01%type := p_region.attribute_01;
+  l_height     apex_application_page_regions.attribute_02%type := p_region.attribute_02;
+  l_code       varchar2(32000);
+  i            number(3) := 0;
+begin
+  apex_javascript.add_library (
+        p_name           => 'maps?file=api&v=2&key=<<YOURKEY>>',
+        p_directory      => 'http://maps.google.com/',
+        p_version        => null,
+        p_skip_extension => true );
+  --
+  sys.htp.p('<div id="'||p_region.static_id||'_map" style="width:'||l_width||'px; height:'||l_height||'px"></div>');      
+  --
+  l_code := 'var map = null;
+             var geocoder = null;
+             if (GBrowserIsCompatible()) {
+             map = new GMap2($x("'||p_region.static_id||'_map"));
+             map.setCenter(new GLatLng(36.902466,-84.202881), 5);
+             map.addControl(new GLargeMapControl());
+             map.addControl(new GMapTypeControl());
+             geocoder = new GClientGeocoder();';
+  --
+  for r_cmr in c_cmr
+  loop
+    l_code := l_code || 'geocoder.getLatLng(' ||''''||
+                        r_cmr.geoloc ||''''||','|| 
+                        'function(point) {
+                         var baseIcon = new GIcon(G_DEFAULT_ICON);
+                         baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+                         baseIcon.iconSize = new GSize(20, 34);
+                         baseIcon.shadowSize = new GSize(37, 34);
+                         baseIcon.iconAnchor = new GPoint(9, 34);
+                         baseIcon.infoWindowAnchor = new GPoint(9, 2);
+                         var letteredIcon = new GIcon(baseIcon);
+                         letteredIcon.image = "http://www.google.com/mapfiles/marker'||chr(65+i)||'.png";
+                         markerOptions = { icon:letteredIcon };
+                         var marker = new GMarker(point,markerOptions);
+                         map.addOverlay(marker);
+                         });';
+    i := i + 1;
+  end loop;
+  --
+  l_code := l_code || '}';
+  --
+  apex_javascript.add_onload_code (p_code => l_code);
+  --
+  return null;
+end render_google_map;

@@ -1,0 +1,9 @@
+/*************************************************************
+** Name: 9672_03_21.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 21 November 2010                                   **
+** The code below describes the parameters needed to        **
+** download files                                           **
+**                                                          **
+*************************************************************/
+DOC_CONTENT:MIMETYPE:FILENAME:CONTENT_LAST_UPDATED::

@@ -1,0 +1,25 @@
+/*************************************************************
+** Name: 9672_13_02.txt                                     **
+** Author: M. van der Plas                                  **
+** Date: 26th October 2013                                  **
+** For PXX_EMPNO and PXX_DEPTNO, replace XX by the page     **
+** number where the functions are intended for              **
+*************************************************************/
+
+function handle_drop_over(evt) {
+  evt.preventDefault();
+}
+
+function handle_drag(evt) {
+  evt.dataTransfer.setData("Text",evt.target.id);
+}
+
+function handle_drop(obj,evt) {
+  evt.preventDefault();
+  var data=evt.dataTransfer.getData("Text");
+  evt.target.appendChild(document.getElementById(data));
+  var ajaxRequest = new htmldb_Get(null,&APP_ID.,'APPLICATION_PROCESS=save_emp_dept',0);
+  ajaxRequest.add('PXX_EMPNO',data);
+  ajaxRequest.add('PXX_DEPTNO',obj.id);
+  ajaxResult = ajaxRequest.get();
+}

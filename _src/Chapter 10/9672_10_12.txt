@@ -1,0 +1,13 @@
+dbms_debug_jdwp.connect_tcp('127.0.0.1',4000);
+declare
+  l_result varchar2(100);
+begin
+  app_search_user('TWITTERUSER','password',:P_TWITTERNAME,l_result);
+  if l_result = 'user found'
+  then
+    return null;
+  else
+    return 'false';
+  end if;
+end;
+dbms_debug_jdwp.disconnect;
